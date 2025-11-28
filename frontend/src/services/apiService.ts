@@ -207,24 +207,32 @@ async function handleResponse<T>(response: Response): Promise<T> {
 }
 
 // Helper function to make API requests
+// Helper function to make API requests
 async function makeRequest<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  
+
   const defaultHeaders = {
     'Content-Type': 'application/json',
+    // ← ЭТА СТРОЧКА РЕШАЕТ ВСЁ!
+    'ngrok-skip-browser-warning': 'true'
   };
-  
+
   const config: RequestInit = {
     ...options,
     headers: {
       ...defaultHeaders,
-      ...options.headers,
+      ...options.headers, // если где-то переопределяешь — не потеряется
     },
   };
-  
+
+  // Специально для uploadFile — не трогаем Content-Type (там FormData)
+  if (endpoint.includes('/api/files/upload')) {
+    delete (config.headers as any)['Content-Type'];
+  }
+
   try {
     const response = await fetch(url, config);
     return await handleResponse<T>(response);
@@ -232,8 +240,7 @@ async function makeRequest<T>(
     if (error instanceof ApiError) {
       throw error;
     }
-    
-    // Network errors
+
     if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
       throw new ApiError('Сервер недоступен. Проверьте подключение к интернету', 0);
     }
