@@ -252,7 +252,8 @@ const Index = () => {
         <div className="container mx-auto px-6 text-center">
           <h2 className={`text-4xl lg:text-5xl font-bold mb-6 ${isDark ? 'text-white' : 'text-black'}`}>Готовы автоматизировать работу аналитиков?</h2>
           <p className={`text-xl mb-8 ${isDark ? 'text-gray-300' : 'text-muted-foreground'}`}>Начните использовать SoloStack сегодня и сократите время подготовки документов в 6 раз.</p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 transition-smooth shadow-lg hover:shadow-xl hover:scale-105">
+          <Button size="lg" className="bg-primary hover:bg-primary/90 transition-smooth shadow-lg hover:shadow-xl hover:scale-105"
+            onClick={() => navigate("/dashboard")}>
             Начать сейчас
           </Button>
         </div>
