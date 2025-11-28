@@ -32,7 +32,7 @@
 - **Zustand / Context** — управление состоянием
 
 ## Демо (скоро будет)
-→ []() (в процессе деплоя)
+→ [https://curly-carnival-phi.vercel.app/](https://curly-carnival-phi.vercel.app/)
 
 ## Как запустить локально (2 терминала)
 
