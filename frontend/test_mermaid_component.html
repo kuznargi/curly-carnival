@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест MermaidDiagram компонента</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.5/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0085CA;
+            margin-top: 0;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 30px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .status {
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        .diagram-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border: 2px solid #0085CA;
+            border-radius: 8px;
+            min-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Тест исправленного MermaidDiagram компонента</h1>
+
+        <div class="status success">
+            ✅ MermaidDiagram.tsx обновлён с критическими исправлениями
+        </div>
+
+        <div class="status info">
+            📌 Версия Mermaid: 10.9.5<br>
+            📌 Критические настройки: securityLevel: 'loose', startOnLoad: false<br>
+            📌 Уникальный ID для каждого рендера
+        </div>
+
+        <div class="test-section">
+            <h2>Тест 1: Простая диаграмма</h2>
+            <p>Должна отобразиться простая диаграмма с 3 узлами</p>
+
+            <h3>Код:</h3>
+            <pre>flowchart TD
+
+start((Начало))
+A[Шаг 1]
+end((Конец))
+
+start --> A
+A --> end</pre>
+
+            <h3>Результат:</h3>
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+
+start((Начало))
+A[Шаг 1]
+end((Конец))
+
+start --> A
+A --> end
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Тест 2: Сложная диаграмма с условиями</h2>
+            <p>Должна отобразиться диаграмма процесса заказа с 10 узлами</p>
+
+            <h3>Результат:</h3>
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+
+start((Начало))
+A[Открыть приложение]
+B[Выбрать ресторан]
+C[Изучить меню]
+D[Добавить в корзину]
+E{Изменить корзину?}
+F[Скорректировать]
+G[Подтвердить]
+H[Обработать заказ]
+end((Конец))
+
+start --> A
+A --> B
+B --> C
+C --> D
+D --> E
+E -->|Да| F
+F --> G
+E -->|Нет| G
+G --> H
+H --> end
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Тест 3: Диаграмма с кириллицей</h2>
+            <p>Проверка корректного отображения русских названий</p>
+
+            <h3>Результат:</h3>
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+
+start((Начало))
+A[Регистрация пользователя]
+B[Проверка email]
+C{Email существует?}
+D[Ошибка: Email занят]
+E[Создание аккаунта]
+F[Отправка письма]
+end((Конец))
+
+start --> A
+A --> B
+B --> C
+C -->|Да| D
+C -->|Нет| E
+E --> F
+F --> end
+D --> end
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 20px; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #4caf50;">
+            <h3 style="margin-top: 0; color: #2e7d32;">✅ Что было исправлено в MermaidDiagram.tsx:</h3>
+            <ul>
+                <li><strong>securityLevel: 'loose'</strong> - критично для Mermaid 10.9.x</li>
+                <li><strong>startOnLoad: false</strong> - ручной контроль рендеринга</li>
+                <li><strong>Уникальный ID</strong> - предотвращает кэширование</li>
+                <li><strong>Очистка контейнера</strong> - removeAttribute('data-processed')</li>
+                <li><strong>Подробное логирование</strong> - для отладки в консоли</li>
+                <li><strong>Улучшенная обработка ошибок</strong> - показывает код при ошибке</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 20px; padding: 20px; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+            <h3 style="margin-top: 0; color: #856404;">📋 Как проверить в React приложении:</h3>
+            <ol>
+                <li>Откройте DevTools (F12) → Console</li>
+                <li>Перейдите на страницу с диаграммами</li>
+                <li>Ищите логи:
+                    <ul>
+                        <li>🎨 Initializing Mermaid with chart: ...</li>
+                        <li>🔧 Rendering with ID: mermaid-...</li>
+                        <li>✅ Mermaid render success, SVG length: ...</li>
+                        <li>✅ SVG inserted into DOM</li>
+                    </ul>
+                </li>
+                <li>Если видите эти логи - всё работает!</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация Mermaid
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            fontFamily: 'inherit',
+            logLevel: 'info'
+        });
+
+        // Рендерим все диаграммы после загрузки
+        window.addEventListener('load', () => {
+            console.log('🚀 Starting Mermaid rendering...');
+
+            const diagrams = document.querySelectorAll('.mermaid');
+
+            diagrams.forEach((element, index) => {
+                const chart = element.textContent.trim();
+                const id = 'mermaid-test-' + Date.now() + '-' + index;
+
+                console.log(`🔧 Rendering diagram ${index + 1}:`, chart.substring(0, 50) + '...');
+
+                mermaid.render(id, chart)
+                    .then(({ svg }) => {
+                        console.log(`✅ Diagram ${index + 1} rendered, SVG length:`, svg.length);
+                        element.innerHTML = svg;
+                    })
+                    .catch((error) => {
+                        console.error(`❌ Diagram ${index + 1} failed:`, error);
+                        element.innerHTML = `
+                            <div style="color: red; padding: 20px; background: #fee;">
+                                <strong>Ошибка:</strong> ${error.message}
+                            </div>
+                        `;
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
