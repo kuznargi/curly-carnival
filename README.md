@@ -31,8 +31,8 @@
 - **Sonner** — красивые тосты
 - **Zustand / Context** — управление состоянием
 
-## Демо (скоро будет)
-→ [https://curly-carnival-phi.vercel.app/](https://curly-carnival-phi.vercel.app/)
+## Демо 
+→ [https://solostack-hackathon.vercel.app/](https://solostack-hackathon.vercel.app/)
 
 ## Как запустить локально (2 терминала)
 
