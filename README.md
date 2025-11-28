@@ -31,8 +31,8 @@
 - **Sonner** — красивые тосты
 - **Zustand / Context** — управление состоянием
 
-## Демо (скоро будет)
-→ []() (в процессе деплоя)
+## Демо 
+→ [https://solostack-hackathon.vercel.app/](https://solostack-hackathon.vercel.app/)
 
 ## Как запустить локально (2 терминала)
 
